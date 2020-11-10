@@ -1,6 +1,7 @@
 package com.brian_big.wordie
 
 import androidx.annotation.NonNull
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Entity(tableName = "word_table")
@@ -19,6 +20,6 @@ interface WordDao{
     fun deleteAll()
 
     @Query("SELECT * from word_table ORDER BY word ASC")
-    fun getAllWords(): List<Word?>?
+    fun getAllWords(): LiveData<List<Word?>>?
 
 }
