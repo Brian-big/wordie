@@ -1,9 +1,7 @@
 package com.brian_big.wordie
 
 import androidx.annotation.NonNull
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 @Entity(tableName = "word_table")
 data class Word(
@@ -11,3 +9,16 @@ data class Word(
     @NonNull
     @ColumnInfo(name = "word")
     val word: String)
+
+@Dao
+interface WordDao{
+    @Insert
+    fun insert(word: Word)
+
+    @Query("DELETE FROM word_table")
+    fun deleteAll()
+
+    @Query("SELECT * from word_table ORDER BY word ASC")
+    fun getAllWords(): List<Word?>?
+
+}
